@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>선셋 스튜디오</title>
+  <meta name="theme-color" content="#1A1A22">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/studio.css">
+</head>
+<body>
+
+<div id="shell-header">
+  <div class="shell-logo">선셋</div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('dashboard')">대시보드</button>
+    <button class="tab-btn" onclick="switchTab('planner')">플래너</button>
+    <button class="tab-btn" onclick="switchTab('quote')">견적서</button>
+  </nav>
+</div>
+
+<iframe id="panel-dashboard" class="panel active" src="d_e5f91a26c0bc49a9.html"></iframe>
+<iframe id="panel-planner"   class="panel"        src="planner.html"></iframe>
+<iframe id="panel-quote"     class="panel"        src="quote.html"></iframe>
+
+<script src="js/studio.js"></script>
+</body>
+</html>

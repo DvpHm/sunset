@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>플래너 · ODE 스튜디오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/planner.css">
+</head>
+<body>
+
+<div class="top">
+  <h1>PLANNER</h1>
+  <span class="sub">할일 일정보드</span>
+  <span class="spacer"></span>
+  <span class="hint">칩을 날짜로 드래그 · 칩 클릭=완료 · ✕=삭제</span>
+<!--  <button class="topbtn" id="btnOrder">🧾 주문 확정</button>-->
+<!--  <button class="topbtn ai" id="btnAi">🤖 AI 추출</button>-->
+<!--  <button class="topbtn" id="btnSync">☁ 동기화</button>-->
+<!--  <button class="topbtn" id="btnSettings" title="설정">⚙</button>-->
+</div>
+
+<div class="wrap">
+  <!-- 좌측: 할일 태그 -->
+  <div class="left">
+    <div class="left-head">
+      <span class="t">할일 태그</span>
+      <span class="c" id="tagCount">0</span>
+    </div>
+    <div class="taglist" id="taglist"></div>
+    <div class="composer">
+      <div class="row">
+        <select id="selClient"><option value="">신청자 선택…</option></select>
+        <button class="addcli" id="addCli" title="신청자 직접 추가">＋</button>
+        <button class="addcli" id="invBtn" title="신청 내역(표정·파츠) 정리" style="font-size:17px;">📋</button>
+      </div>
+      <div class="row">
+        <input class="txt" id="todoText" placeholder="할 일 입력 후 Enter" autocomplete="off">
+        <button class="mk" id="mkBtn">생성</button>
+      </div>
+<!--      <div class="row">-->
+<!--        <button class="mk" id="stageBtn" style="flex:1;background:var(&#45;&#45;panel);border:1px solid var(&#45;&#45;border);color:var(&#45;&#45;text2);" title="러프~완성 단계 + 풀옵션/축전/삼면도/추가파츠 옵션으로 작업 태그 생성">⚡ 단계 태그 생성</button>-->
+<!--      </div>-->
+    </div>
+  </div>
+
+  <!-- 우측: 캘린더 -->
+  <div class="right">
+    <div class="cal-head">
+      <button class="navbtn" id="prevM">‹</button>
+      <button class="navbtn" id="nextM">›</button>
+      <div class="ym" id="ymLabel"></div>
+      <button class="todaybtn" id="todayBtn">오늘</button>
+      <span style="font-family:var(--cond);font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.5px;margin-left:4px;">전체</span>
+      <button class="todaybtn" id="shiftBack" title="배치된 모든 일정을 하루 앞으로 당김">−1일</button>
+      <button class="todaybtn" id="shiftFwd" title="배치된 모든 일정을 하루 뒤로 미룸">+1일</button>
+      <button class="todaybtn" id="focusBtn" title="오늘·다가오는 일정 모아보기" style="border-color:#E8650A;color:var(--Y);">📌 오늘 <b id="focusCount" style="color:var(--Y);">0</b></button>
+      <div class="cal-legend">
+        <span><i class="lg-dl"></i>의뢰 마감일</span>
+      </div>
+    </div>
+    <div class="dow"><div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<!-- ═══ AI 추출 모달 ═══ -->
+<div class="modal-bg" id="aiModal">
+  <div class="modal">
+    <h2>🤖 AI 할일 추출</h2>
+    <div class="desc">신청자와 나눈 대화를 붙여넣으면 Claude가 해야 할 일을 자동으로 뽑아 태그로 만들어줍니다. 날짜가 언급되면 캘린더에도 배치돼요.</div>
+    <label>신청자</label>
+    <select id="aiClient"></select>
+    <label>대화 내용</label>
+    <textarea id="aiText" placeholder="예)
+신청자: 안녕하세요! 반신 커미션 신청하고 싶어요
+나: 네! 6월 안에 가능하세요?
+신청자: 네 25일까지 부탁드려요. 러프는 15일쯤 볼 수 있을까요?
+나: 가능합니다. 입금 확인되면 시작할게요~"></textarea>
+    <div class="mstatus" id="aiStatus"></div>
+    <div class="ai-preview" id="aiPreview"></div>
+    <label class="stageopt" style="margin-top:12px;"><input type="checkbox" id="aiToDash" checked><span>대시보드 의뢰에도 등록 <small>(이름·파츠만 / 가격은 직접 입력)</small></span></label>
+    <div class="btnrow">
+      <button class="mbtn" id="aiClose">닫기</button>
+      <button class="mbtn ai" id="aiRun">추출하기</button>
+      <button class="mbtn primary" id="aiAdd" style="display:none;">선택 항목 태그 추가</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 오늘·이번주 포커스 모달 ═══ -->
+<div class="modal-bg" id="focusModal">
+  <div class="modal">
+    <h2>📌 오늘 · 다가오는 일정</h2>
+    <div class="desc">날짜에 배치된 할 일과 의뢰 마감을 모아 봅니다. 칩을 누르면 완료 토글(대시보드 단계도 자동 반영).</div>
+    <div id="focusBody"></div>
+    <div class="btnrow"><button class="mbtn primary" id="focusClose">닫기</button></div>
+  </div>
+</div>
+
+<!-- ═══ 주문 확정기 모달 ═══ -->
+<div class="modal-bg" id="orderModal">
+  <div class="modal" style="max-width:640px;">
+    <h2>🧾 주문 확정기</h2>
+    <div class="desc">커미션편집 카탈로그를 기준으로 최종 옵션을 확정합니다. 대화로 미리 선택 → 확인·수정 → 확정하면 <b>단계·추가파츠 태그 + 인벤토리 + 대시보드 금액</b>이 한 번에 생성돼요.</div>
+    <label>신청자</label>
+    <select id="ordClient"></select>
+    <details style="margin-top:10px;">
+      <summary style="cursor:pointer;font-size:13.5px;color:var(--text2);">🤖 대화로 미리 선택 (선택)</summary>
+      <textarea id="ordAiText" placeholder="신청양식/대화 전체를 붙여넣으면 최종 확정 옵션을 골라줘요..." style="margin-top:8px;min-height:110px;"></textarea>
+      <button class="mbtn ai" id="ordAiBtn" style="margin-top:8px;">대화로 옵션 채우기</button>
+      <div class="mstatus" id="ordAiStatus"></div>
+    </details>
+    <div id="ordCatalog"></div>
+    <div class="ord-total"><span class="lbl">합계 금액</span><span class="amt" id="ordTotal">0원</span></div>
+    <div class="ord-derive" id="ordDerive"></div>
+    <div class="btnrow">
+      <button class="mbtn" id="ordClose">닫기</button>
+      <button class="mbtn primary" id="ordConfirm">✓ 확정 — 태그·인벤토리·대시보드 생성</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 단계 생성 모달 ═══ -->
+<div class="modal-bg" id="stageModal">
+  <div class="modal">
+    <h2>⚡ 단계 태그 생성</h2>
+    <div class="desc">기본 단계에 옵션을 더해 작업 태그를 한 번에 만듭니다. 이미 있는 태그는 건너뜁니다.</div>
+    <label>신청자</label>
+    <select id="stageClient"></select>
+    <div class="stage-base">기본: 러프1 · 러프2 · 선화 · 채색 · 완성</div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px;">
+      <label class="stageopt"><input type="checkbox" id="stFull"><span>풀옵션 <small>(+ 러프3)</small></span></label>
+      <label class="stageopt"><input type="checkbox" id="stChuk"><span>축전 <small>(+ 러프4(축전) · 축전 태그)</small></span></label>
+      <label class="stageopt"><input type="checkbox" id="stSam"><span>삼면도 <small>(+ 삼면도 태그)</small></span></label>
+      <label class="stageopt"><span>추가파츠 태그</span><small style="color:var(--text3);">게임기·인체·의상·헤어추가 2개당 1개</small><input type="number" id="stExtra" min="0" max="20" value="0"></label>
+      <label class="stageopt"><input type="checkbox" id="stPlace"><span>📅 마감일에서 역산해 캘린더 배치 <small id="stDeadline"></small></span></label>
+      <label class="stageopt" id="stGapRow" style="display:none;"><span>단계 간격</span><small style="color:var(--text3);">마감에서 거꾸로 N일씩</small><input type="number" id="stGap" min="1" max="14" value="2"></label>
+    </div>
+    <div class="stage-prev" id="stagePrev"></div>
+    <div class="btnrow">
+      <button class="mbtn" id="stageClose">닫기</button>
+      <button class="mbtn primary" id="stageGen">생성</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 신청 내역(인벤토리) 모달 ═══ -->
+<div class="modal-bg" id="invModal">
+  <div class="modal">
+    <h2>📋 신청 내역</h2>
+    <div class="desc">신청 들어온 표정·파츠 체크리스트입니다. 태그(작업 묶음)와 별개로, 빠뜨리면 안 되는 디테일을 관리해요. 작업하면서 체크하세요.</div>
+    <label>신청자</label>
+    <select id="invClient"></select>
+    <div class="inv-group">
+      <div class="ghead"><span class="gt">🎭 추가 표정</span><span class="gc" id="invExpC">0</span><button class="addinv" data-cat="expressions">＋ 추가</button></div>
+      <div class="inv-list" id="invExpList"></div>
+    </div>
+    <div class="inv-group">
+      <div class="ghead"><span class="gt">🧩 추가 파츠</span><span class="gc" id="invPartC">0</span><button class="addinv" data-cat="parts">＋ 추가</button></div>
+      <div class="inv-list" id="invPartList"></div>
+    </div>
+    <div class="mstatus" id="invDashStatus"></div>
+    <div class="btnrow">
+      <button class="mbtn" id="invClose">닫기</button>
+      <button class="mbtn primary" id="invToDash">📤 대시보드에 반영</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 동기화 모달 ═══ -->
+<div class="modal-bg" id="syncModal">
+  <div class="modal">
+    <h2>☁ GitHub 동기화</h2>
+    <div class="desc">플래너 데이터를 저장소 <b>data/planner.json</b>에 백업하고, 다른 기기에서 복원할 수 있어요. (대시보드와 같은 GitHub 설정 공유)</div>
+    <div class="mstatus" id="syncStatus"></div>
+    <div class="btnrow">
+      <button class="mbtn" id="syncClose">닫기</button>
+      <button class="mbtn" id="syncRestore">⬇ 복원 (불러오기)</button>
+      <button class="mbtn primary" id="syncBackup">⬆ 백업 (업로드)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 설정 모달 ═══ -->
+<div class="modal-bg" id="setModal">
+  <div class="modal">
+    <h2>⚙ 설정</h2>
+    <div class="desc">키는 이 브라우저(localStorage)에만 저장됩니다.</div>
+    <label>Claude API 키 <span style="color:var(--text3);font-weight:400;">(AI 추출용 · console.anthropic.com에서 발급)</span></label>
+    <input id="setClaudeKey" type="password" placeholder="sk-ant-api03-...">
+    <label>AI 모델</label>
+    <select id="setClaudeModel">
+      <option value="claude-opus-4-8">Claude Opus 4.8 — 가장 똑똑함 (기본, 1회 ~30원)</option>
+      <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — 균형 (1회 ~15원)</option>
+      <option value="claude-haiku-4-5">Claude Haiku 4.5 — 가장 저렴 (1회 ~5원)</option>
+    </select>
+    <label>GitHub 사용자명</label>
+    <input id="setGhUser" placeholder="DvpHm">
+    <label>GitHub 저장소</label>
+    <input id="setGhRepo" placeholder="ODE">
+    <label>GitHub 토큰</label>
+    <input id="setGhToken" type="password" placeholder="ghp_...">
+    <label class="stageopt" style="margin-top:14px;"><input type="checkbox" id="setSyncStage" checked><span>단계 완료 → 대시보드 진행단계 자동 반영 <small>(러프·선화·채색·완성 체크 시)</small></span></label>
+    <div class="btnrow">
+      <button class="mbtn" id="setClose">닫기</button>
+      <button class="mbtn primary" id="setSave">저장</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/planner.js"></script>
+</body>
+</html>
