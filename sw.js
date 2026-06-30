@@ -8,8 +8,6 @@ const SHELL = [
   PATH + 'planner.html',
   PATH + 'quote.html',
   PATH + 'manifest.json',
-  PATH + 'icons/icon-192.png',
-  PATH + 'icons/icon-512.png'
 ];
 
 self.addEventListener('install', function(e) {
