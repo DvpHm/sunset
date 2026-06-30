@@ -1,6 +1,6 @@
 /* ─── 설정 ─── */
 /* 비밀번호는 SHA-256 해시로만 저장 — F12로 원문 확인 불가 */
-var DASH_HASH = '0f492f732b927f8885359593c2ecc8f78fd2041fbafb4bb411bd37b1722e7f02';
+var DASH_HASH = '';
 var STORAGE_KEY = 'ss_dash_v1';
 var STAGES = ['접수','입금확인','러프','러프컨펌','선화','채색','완성','전달완료'];
 var PLATFORMS = {
@@ -18,6 +18,18 @@ var TAG_COLORS = {
   'yellow':{label:'리깅세트', bg:'rgba(251,191,36,.18)', border:'#fbbf24', text:'#fbbf24'},
   'purple':{label:'기타', bg:'rgba(167,139,250,.18)', border:'#a78bfa', text:'#a78bfa'},
 };
+
+function loadPwd() {
+  fetch("data/pwd.json")
+    .then(r => r.json())
+    .then(data => {
+      DASH_HASH = data.DASH_HASH;
+    })
+    .catch(function(){
+      document.getElementById('loginErr').textContent='비밀번호를 불러오지 못했습니다.';
+    });
+}
+loadPwd();
 
 async function _hashPw(pw){
   var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
@@ -479,6 +491,80 @@ async function testGhToken(){
     else { st.className='gh-status err'; st.textContent='❌ 실패 ('+res.status+'): 토큰과 저장소 이름을 확인해주세요'; }
   }catch(e){ st.className='gh-status err'; st.textContent='❌ 오류: '+e.message; }
 }
+
+/* 비밀번호 변경 */
+function togglePwVisibility(inputId, btn) {
+  var input = document.getElementById(inputId);
+  var isHidden = input.type === 'password';
+  input.type = isHidden ? 'text' : 'password';
+  btn.textContent = isHidden ? '🙈' : '👁️';
+}
+
+function openPwdModal(){
+  document.getElementById('pwdModal').classList.add('open');
+}
+function closePwdModal(){ document.getElementById('pwdModal').classList.remove('open'); }
+function b64(str){return btoa(unescape(encodeURIComponent(str)));}
+async function savePwd(){
+  var c=_ghCfg();
+  if(!c.token){
+    showToast('먼저 GitHub 토큰을 입력해 주세요 (⚙ 설정)','err');
+    document.getElementById('ghModal').classList.add('open');
+    return;
+  }
+
+  var oriPwd = document.getElementById('originPwd').value.trim();
+  if(!oriPwd){ showToast('기존 비밀번호를 입력해 주세요','err'); return; }
+
+  var newPwd = document.getElementById('updatePwd').value.trim();
+  if(!newPwd){ showToast('새 비밀번호를 입력해 주세요','err'); return; }
+
+  loadPwd();
+  var hashOriPwd = await _hashPw(oriPwd);
+  if(hashOriPwd !== DASH_HASH) {
+    console.log(hashOriPwd);
+    console.log(DASH_HASH);
+
+    showToast('기존 비밀번호가 일치하지 않습니다.');
+    return;
+  }
+
+  // persist creds for sharing with dashboard
+  localStorage.setItem('gh_user',c.user);
+  localStorage.setItem('gh_repo',c.repo);
+  localStorage.setItem('gh_token',c.token);
+
+  var hash = await _hashPw(newPwd);
+  var content = b64(JSON.stringify({ DASH_HASH: hash, updated: new Date().toISOString() }, null, 2));
+  var url='https://api.github.com/repos/'+c.user+'/'+c.repo+'/contents/data/pwd.json';
+
+  try {
+    var shaRes = await fetch(url+'?t='+Date.now(),{headers:{'Authorization':'token '+c.token}});
+    var sha = shaRes.ok ? (await shaRes.json()).sha : undefined;
+
+    var putRes = await fetch(url,{
+      method:'PUT',
+      headers:{'Authorization':'token '+c.token,'Content-Type':'application/json'},
+      body:JSON.stringify({
+        message:'✏️ 비밀번호 수정 '+new Date().toLocaleString('ko-KR'),
+        content:content,
+        sha:sha
+      })
+    });
+    var result = await putRes.json();
+
+    if(putRes.ok){
+      closePwdModal();
+      showToast('✅ 비밀번호 변경 완료! 다시 로그인해 주세요');
+      setTimeout(doLogout, 1200);
+    } else {
+      showToast('비밀번호 변경 실패: '+(result.message||'알 수 없는 오류'),'err');
+    }
+  } catch(e){
+    showToast('비밀번호 변경 중 오류: '+e.message,'err');
+  }
+}
+
 async function _ghGetSha(u,r,t,path){
   try{var res=await fetch('https://api.github.com/repos/'+u+'/'+r+'/contents/'+path,{headers:{'Authorization':'token '+t}});
     if(!res.ok)return null; return (await res.json()).sha||null;
