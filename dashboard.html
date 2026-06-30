@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="ko"><head>
+<script>if(window.__DASH_BAKED__)Object.assign(window,window.__DASH_BAKED__);window.__DASH_BAKED__={"commissions":[]};</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>선셋 · 의뢰 관리</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Noto+Sans+KR:wght@300;400;700;900&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&amp;family=Noto+Sans+KR:wght@300;400;700;900&amp;family=DM+Mono:wght@300;400;500&amp;family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
 <!-- 로그인 -->
-<div id="loginScreen">
+<div id="loginScreen" style="display: none;">
   <div class="login-box">
     <div class="login-logo">선셋</div>
     <div class="login-sub">의뢰 관리 대시보드 · 비공개</div>
@@ -23,7 +23,7 @@
 </div>
 
 <!-- 앱 -->
-<div id="app">
+<div id="app" style="display: block;">
   <div class="notice-banner" id="noticeBanner"></div>
   <header class="app-header">
     <div class="top">
@@ -31,9 +31,9 @@
       <span class="sub">의뢰 관리</span>
     </div>
     <div class="header-actions">
-      <div id="syncIndicator" style="display:none;align-items:center;gap:6px;font-size:11px;color:var(--text3);font-family:var(--mono)">
-        <span id="syncDot" style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>
-        <span id="syncLabel">동기화됨</span>
+      <div id="syncIndicator" style="display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text3); font-family: var(--mono);">
+        <span id="syncDot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block;"></span>
+        <span id="syncLabel">동기화됨 오후 02:48</span>
       </div>
       <div class="stat-pill">진행 중 <b id="hStatActive">0</b></div>
       <div class="deadline-pill ok" id="hNextDeadline" title="가장 임박한 마감">📅 마감 없음</div>
@@ -51,13 +51,13 @@
       <div class="stat-card"><div class="stat-label">진행 중</div><div class="stat-value yellow" id="stActive">0</div></div>
       <div class="stat-card"><div class="stat-label">완료</div><div class="stat-value green" id="stDone">0</div></div>
       <div class="stat-card"><div class="stat-label">이번 달 수익</div><div class="stat-value pink" id="stIncome">0</div></div>
-      <div class="stat-card"><div class="stat-label">전체 누적 수익</div><div class="stat-value purple" id="stAllTime">0</div></div>
+      <div class="stat-card"><div class="stat-label">전체 누적 수익</div><div class="stat-value purple" id="stAllTime">0원</div></div>
     </div>
 
     <!-- 툴바 -->
     <div class="toolbar">
       <button class="tb-btn primary" onclick="openModal(-1)">＋ 새 의뢰</button>
-<!--      <button class="tb-btn" style="border-color:#fbbf24;color:#fbbf24" onclick="openParseModal()">📋 신청서 등록</button>-->
+      <!--      <button class="tb-btn" style="border-color:#fbbf24;color:#fbbf24" onclick="openParseModal()">📋 신청서 등록</button>-->
       <div class="tb-filter">
         <button class="tf-opt sel" data-f="all" onclick="setFilter(this)">전체</button>
         <button class="tf-opt" data-f="active" onclick="setFilter(this)">진행 중</button>
@@ -77,7 +77,7 @@
     </div>
 
     <!-- 의뢰 카드 -->
-    <div class="comm-grid" id="commGrid"></div>
+    <div class="comm-grid" id="commGrid"><div class="empty-state"><div class="ei">📋</div><p>해당 조건의 의뢰가 없어요</p></div></div>
   </main>
 </div>
 
@@ -85,7 +85,7 @@
 <div class="modal" id="editModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <div class="modal-head">
-      <div class="modal-title" id="editTitle">새 의뢰 추가</div>
+      <div class="modal-title" id="editTitle">의뢰 수정</div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
@@ -121,20 +121,20 @@
       </div>
       <div>
         <div class="field-label">현재 단계</div>
-        <div class="stage-picker" id="stagePicker"></div>
+        <div class="stage-picker" id="stagePicker"><button class="sp-btn sel" onclick="pickStage(0)">접수</button><button class="sp-btn" onclick="pickStage(1)">입금확인</button><button class="sp-btn" onclick="pickStage(2)">러프</button><button class="sp-btn" onclick="pickStage(3)">러프컨펌</button><button class="sp-btn" onclick="pickStage(4)">선화</button><button class="sp-btn" onclick="pickStage(5)">채색</button><button class="sp-btn" onclick="pickStage(6)">완성</button><button class="sp-btn" onclick="pickStage(7)">전달완료</button></div>
       </div>
       <div>
         <div class="field-label">신청 플랫폼</div>
-        <div class="platform-picker" id="platformPicker"></div>
+        <div class="platform-picker" id="platformPicker"><button class="pp-btn sel" style="border-color:#7A7870;background:rgba(122,120,112,.15);color:#7A7870;" onclick="pickPlatform('','platformPicker','_editPlatform')">없음</button><button class="pp-btn" style="" onclick="pickPlatform('artmug','platformPicker','_editPlatform')">아트머그</button><button class="pp-btn" style="" onclick="pickPlatform('tally','platformPicker','_editPlatform')">Tally</button><button class="pp-btn" style="" onclick="pickPlatform('x','platformPicker','_editPlatform')">X (트위터)</button><button class="pp-btn" style="" onclick="pickPlatform('dm','platformPicker','_editPlatform')">직접 DM</button></div>
       </div>
       <div>
         <div class="field-label">연락처 (디스코드, SNS 등)</div>
         <input class="field" id="fContact" placeholder="discord#1234 · @handle · DM링크">
       </div>
-<!--      <div>-->
-<!--        <div class="field-label">색상 태그</div>-->
-<!--        <div class="tag-swatches" id="tagSwatches"></div>-->
-<!--      </div>-->
+      <!--      <div>-->
+      <!--        <div class="field-label">색상 태그</div>-->
+      <!--        <div class="tag-swatches" id="tagSwatches"></div>-->
+      <!--      </div>-->
       <div>
         <div class="field-label">메모</div>
         <textarea class="field memo-ta" id="fNote" placeholder="파츠 주의사항, 수정 히스토리 등 내부 메모 (신청자에게 안 보임)..." rows="3"></textarea>
@@ -158,7 +158,7 @@
       <div style="display: flex;flex-direction: row;justify-content: space-between;gap: 10px">
         <div style="width: 100%">
           <div class="field-label">의뢰인</div>
-          <input class="field" id="dlvClient" name="client_name" readonly style="opacity:.7">
+          <input class="field" id="dlvClient" name="client_name" readonly="" style="opacity:.7">
         </div>
         <div style="width: 100%">
           <div class="field-label">이메일</div>
@@ -178,40 +178,40 @@
   감사합니다!
   — 선셋 (@sunset)"></textarea>
       </div>
-<!--      <div>-->
-<!--        <div class="field-label">완성 파일 선택</div>-->
-<!--        <div class="file-zone" onclick="document.getElementById('dlvFile').click()">-->
-<!--          <div style="font-size:24px;margin-bottom:6px">📁</div>-->
-<!--          <div style="font-size:13px;font-weight:700;color:var(&#45;&#45;sky)">파일 선택하기</div>-->
-<!--          <div style="font-size:11px;color:var(&#45;&#45;text3);margin-top:4px">PSD, PNG, ZIP 등 여러 파일 동시 선택 가능</div>-->
-<!--        </div>-->
-<!--        <input type="file" id="dlvFile" multiple style="display:none" onchange="onDlvFileChange(this)">-->
-<!--        <div class="file-list" id="dlvFileList"></div>-->
-<!--        <div class="prog" id="dlvProg"><div class="prog-fill" id="dlvProgFill"></div></div>-->
-<!--      </div>-->
+      <!--      <div>-->
+      <!--        <div class="field-label">완성 파일 선택</div>-->
+      <!--        <div class="file-zone" onclick="document.getElementById('dlvFile').click()">-->
+      <!--          <div style="font-size:24px;margin-bottom:6px">📁</div>-->
+      <!--          <div style="font-size:13px;font-weight:700;color:var(&#45;&#45;sky)">파일 선택하기</div>-->
+      <!--          <div style="font-size:11px;color:var(&#45;&#45;text3);margin-top:4px">PSD, PNG, ZIP 등 여러 파일 동시 선택 가능</div>-->
+      <!--        </div>-->
+      <!--        <input type="file" id="dlvFile" multiple style="display:none" onchange="onDlvFileChange(this)">-->
+      <!--        <div class="file-list" id="dlvFileList"></div>-->
+      <!--        <div class="prog" id="dlvProg"><div class="prog-fill" id="dlvProgFill"></div></div>-->
+      <!--      </div>-->
       <div class="field">
         <label>
           첨부파일
           <span class="zip-badge" id="zipBadge" style="display:none; margin-left:6px;">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3h18v18H3z M9 3v18 M15 3v18 M3 9h6 M3 15h6 M15 9h6 M15 15h6"/></svg>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3h18v18H3z M9 3v18 M15 3v18 M3 9h6 M3 15h6 M15 9h6 M15 15h6"></path></svg>
             ZIP으로 묶임
           </span>
         </label>
         <div class="file-drop" id="fileDrop">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b4b2a9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b4b2a9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
           클릭하거나 파일을 여기에 드래그하세요
         </div>
-        <input type="file" id="fileInput" multiple />
+        <input type="file" id="fileInput" multiple="">
         <div class="file-list" id="fileList"></div>
 
         <div class="zip-setting" id="zipSetting">
           <div class="zip-row">
-            <input type="checkbox" id="useZip" checked onchange="toggleZipOptions()" />
+            <input type="checkbox" id="useZip" checked="" onchange="toggleZipOptions()">
             <label for="useZip">파일을 ZIP으로 묶어서 첨부</label>
           </div>
           <div class="zip-row" id="zipNameRow">
             <label for="zipName" style="white-space:nowrap;">ZIP 파일명</label>
-            <input type="text" id="zipName" value="attachments.zip" placeholder="attachments.zip" />
+            <input type="text" id="zipName" value="attachments.zip" placeholder="attachments.zip">
           </div>
         </div>
       </div>
@@ -274,7 +274,9 @@
     </div>
     <div class="modal-body">
       <div class="field-label">신청자가 보낸 양식 붙여넣기</div>
-      <textarea class="parse-ta" id="parseTa" placeholder="━━━━━━━━━━━━━━━━━━━━━━━━━━━━&#10;   선셋 작가 · 의뢰 양식&#10;━━━━━━━━━━━━━━━━━━━━━━━━━━━━..." oninput="parseLive()"></textarea>
+      <textarea class="parse-ta" id="parseTa" placeholder="━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   선셋 작가 · 의뢰 양식
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━..." oninput="parseLive()"></textarea>
       <div id="parsePreviewWrap" style="display:none;margin-top:14px">
         <div class="field-label" style="margin-bottom:6px">📌 파싱 결과</div>
         <div class="parse-preview" id="parseResult"></div>
@@ -344,8 +346,9 @@
   </div>
 </div>
 
-<div id="toast"></div>
+<div id="toast" class="show">🚀 배포 중...</div>
 
 <script src="js/dashboard.js"></script>
-</body>
-</html>
+
+
+</body></html>
