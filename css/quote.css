@@ -32,8 +32,8 @@ input::placeholder,textarea::placeholder{color:var(--text4);}
 .btn{border:none;border-radius:9px;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.4px;padding:9px 17px;cursor:pointer;transition:all .15s}
 .btn-dl{background:var(--Y);color:#fff;box-shadow:0 4px 14px rgba(232,101,10,.25)}
 .btn-dl:hover{transform:translateY(-1px)}
-.btn-ghost{background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
-.btn-ghost:hover{color:var(--text);border-color:var(--Y)}
+.btn-ghost{background:#ffffff;color:var(--text2);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--Y);border-color:var(--Y)}
 .wrap{max-width:840px;margin:0 auto;padding:20px 0;display:grid;grid-template-columns:1fr 410px;gap:20px;align-items:start}
 @media(max-width:760px){.wrap{grid-template-columns:1fr}}
 .panel{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px}

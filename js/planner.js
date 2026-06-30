@@ -615,24 +615,24 @@ function mergeInventory(client, expressions, parts){
 
 /* ════════ 설정 (Claude 키·모델 + GitHub) ════════ */
 function ghCfg(){ return {user:localStorage.getItem('gh_user')||'',repo:localStorage.getItem('gh_repo')||'',token:localStorage.getItem('gh_token')||''}; }
-// document.getElementById('btnSettings').addEventListener('click',function(){
-//   document.getElementById('setClaudeKey').value=localStorage.getItem('ss_claude_key')||'';
-//   document.getElementById('setClaudeModel').value=localStorage.getItem('ss_claude_model')||'claude-opus-4-8';
-//   var g=ghCfg();
-//   document.getElementById('setGhUser').value=g.user||'DvpHm';
-//   document.getElementById('setGhRepo').value=g.repo||'ODE';
-//   document.getElementById('setGhToken').value=g.token||'';
-//   document.getElementById('setSyncStage').checked=localStorage.getItem('ss_sync_stage')!=='0';
-//   openModal('setModal');
-// });
+document.getElementById('btnSettings').addEventListener('click',function(){
+  // document.getElementById('setClaudeKey').value=localStorage.getItem('ss_claude_key')||'';
+  // document.getElementById('setClaudeModel').value=localStorage.getItem('ss_claude_model')||'claude-opus-4-8';
+  var g=ghCfg();
+  document.getElementById('setGhUser').value=g.user||'DvpHm';
+  document.getElementById('setGhRepo').value=g.repo||'sunset';
+  document.getElementById('setGhToken').value=g.token||'';
+  // document.getElementById('setSyncStage').checked=localStorage.getItem('ss_sync_stage')!=='0';
+  openModal('setModal');
+});
 document.getElementById('setClose').addEventListener('click',function(){ closeModal('setModal'); });
 document.getElementById('setSave').addEventListener('click',function(){
-  localStorage.setItem('ss_claude_key', document.getElementById('setClaudeKey').value.trim());
-  localStorage.setItem('ss_claude_model', document.getElementById('setClaudeModel').value);
+  // localStorage.setItem('ss_claude_key', document.getElementById('setClaudeKey').value.trim());
+  // localStorage.setItem('ss_claude_model', document.getElementById('setClaudeModel').value);
   localStorage.setItem('gh_user', document.getElementById('setGhUser').value.trim());
   localStorage.setItem('gh_repo', document.getElementById('setGhRepo').value.trim());
   localStorage.setItem('gh_token', document.getElementById('setGhToken').value.trim());
-  localStorage.setItem('ss_sync_stage', document.getElementById('setSyncStage').checked?'1':'0');
+  // localStorage.setItem('ss_sync_stage', document.getElementById('setSyncStage').checked?'1':'0');
   closeModal('setModal'); toast('✅ 설정 저장 완료');
 });
 
@@ -728,10 +728,10 @@ document.getElementById('stageGen').addEventListener('click',function(){
 /* ════════ F. GitHub 동기화 ════════ */
 var SYNC_PATH='data/planner.json';
 function syncStatus(cls,msg){ var el=document.getElementById('syncStatus'); el.className='mstatus show '+cls; el.textContent=msg; }
-// document.getElementById('btnSync').addEventListener('click',function(){
-//   document.getElementById('syncStatus').className='mstatus';
-//   openModal('syncModal');
-// });
+document.getElementById('btnSync').addEventListener('click',function(){
+  document.getElementById('syncStatus').className='mstatus';
+  openModal('syncModal');
+});
 document.getElementById('syncClose').addEventListener('click',function(){ closeModal('syncModal'); });
 
 async function ghGetFile(g){
