@@ -1,0 +1,459 @@
+{
+  "updated": "2026-07-13T21:13:15.617Z",
+  "hero": {
+    "badgeKo": "Live2D Illustrator · ODE",
+    "badgeEn": "Live2D Illustrator · ODE",
+    "subKo": "퀄리티 높고 가성비 있는 그림을 지향합니다.<br>편하게 문의주세요.",
+    "subEn": "Quality artwork at a fair price.<br>Feel free to reach out."
+  },
+  "steps": [
+    {
+      "num": "STEP 01",
+      "ko": "신청",
+      "koSub": "(입금)",
+      "en": "Apply",
+      "enSub": "(payment)"
+    },
+    {
+      "num": "STEP 02",
+      "ko": "러프",
+      "koSub": "(디자인)",
+      "en": "Rough",
+      "enSub": "(design)"
+    },
+    {
+      "num": "STEP 03",
+      "ko": "수정 및 컨펌",
+      "koSub": "",
+      "en": "Revise & confirm",
+      "enSub": ""
+    },
+    {
+      "num": "STEP 04",
+      "ko": "선화 및 배색",
+      "koSub": "",
+      "en": "Lineart & colors",
+      "enSub": ""
+    },
+    {
+      "num": "STEP 05",
+      "ko": "2차 컨펌",
+      "koSub": "",
+      "en": "2nd confirm",
+      "enSub": ""
+    },
+    {
+      "num": "STEP 06",
+      "ko": "채색 및 완성",
+      "koSub": "",
+      "en": "Coloring & done",
+      "enSub": ""
+    },
+    {
+      "num": "STEP 07",
+      "ko": "컨펌 후",
+      "koSub": "추가파츠 제작",
+      "en": "After confirm",
+      "enSub": "extra parts"
+    },
+    {
+      "num": "STEP 08",
+      "ko": "전달",
+      "koSub": "(완료)",
+      "en": "Delivery",
+      "enSub": "(complete)",
+      "last": true
+    }
+  ],
+  "tags": [
+    {
+      "ko": "접수 <b>진행중</b>",
+      "en": "<b>Open</b> for requests",
+      "live": true,
+      "pk": true
+    },
+    {
+      "ko": "Live2D <b>전문</b>",
+      "en": "Live2D <b>specialist</b>",
+      "pk": true
+    },
+    {
+      "ko": "작업기간 <b>30일</b>",
+      "en": "<b>~30 day</b> turnaround"
+    }
+  ],
+  "slots": [
+    {
+      "ko": "7월",
+      "en": "July",
+      "filled": [
+        false
+      ]
+    },
+    {
+      "ko": "8월",
+      "en": "August",
+      "filled": [
+        false,
+        false
+      ]
+    },
+    {
+      "ko": "9월",
+      "en": "September",
+      "filled": [
+        false,
+        false
+      ]
+    }
+  ],
+  "important": [
+    {
+      "qKo": "안내 사항",
+      "qEn": "Notice",
+      "aKo": "본 작업은 Live2D 리깅이 포함되지 않은 파츠 분리 일러스트입니다. <br>\n디자인이 준비되지 않은 경우 디자인 비용이 추가됩니다. <br>\n예약은 전액 입금 완료 후 확정됩니다.",
+      "aEn": "This service provides part-separated illustrations only and does not include Live2D rigging. <br>\nIf a design has not been prepared in advance, a design fee will be added. <br>\nBookings are confirmed only after full payment has been received."
+    },
+    {
+      "qKo": "작업 사양",
+      "qEn": "Work Specifications",
+      "aKo": "기본 사이즈 : 4000 × 6000px / 300dpi <br>\n기본 포즈 : 정면 스탠딩 포즈",
+      "aEn": "Base size: 4000 × 6000px / 300dpi <br>\nBase pose: Front-facing standing pose"
+    },
+    {
+      "qKo": "수정",
+      "qEn": "Revisions",
+      "aKo": "각 컨펌 단계별 최대 2회 수정 가능합니다. <br>\n수정 사항은 가능한 한 한 번에 정리하여 전달 부탁드립니다. <br>\n작가의 누락 및 작업 실수는 수정 횟수에 포함되지 않습니다. <br>\n작업이 상당 부분 진행된 이후에는 큰 폭의 디자인 변경이 어려울 수 있습니다. <br>\n리깅시 발생되는 파츠문제는 무료로 수정 가능합니다.",
+      "aEn": "Up to 2 revisions are allowed at each confirmation stage. <br>\nPlease compile and send all revision requests together in one round whenever possible. <br>\nOmissions or mistakes on the artist's part do not count toward the revision limit. <br>\nOnce work has progressed significantly, major design changes may not be possible. <br>\nPart-related issues that arise during rigging can be fixed free of charge."
+    },
+    {
+      "qKo": "파츠 분리",
+      "qEn": "Part Separation",
+      "aKo": "Live2D 제작에 필요한 기준으로 분리됩니다. <br>\n리깅 편의를 위한 과도한 추가 분리 요청은 어렵습니다.",
+      "aEn": "Parts are separated according to the standards required for Live2D production. <br>\nRequests for excessive additional separation for rigging convenience cannot be accommodated."
+    }
+  ],
+  "sections": [
+    {
+      "id": "base",
+      "ko": "기본 일러스트",
+      "en": "Base Illustration",
+      "koLabel": "기본 일러스트",
+      "tagKo": "필수",
+      "tagEn": "Required",
+      "tagCls": "req",
+      "type": "radio",
+      "items": [
+        {
+          "id": "b1",
+          "ko": "전신 · 협업용",
+          "en": "Full body · Collab",
+          "p": 1050000,
+          "subKo": "🎉 20만원 할인",
+          "subEn": "🎉 ₩200,000 off"
+        },
+        {
+          "id": "b2",
+          "ko": "전신",
+          "en": "Full body",
+          "p": 1100000,
+          "subKo": "🎉 20만원 할인",
+          "subEn": "🎉 ₩200,000 off"
+        },
+        {
+          "id": "b3",
+          "ko": "반신 (리깅X)",
+          "en": "Half body (no rigging)",
+          "p": 850000
+        },
+        {
+          "id": "b4",
+          "ko": "풀옵션[디자인, 전신, 알몸파츠(추후 신의상에 용의), 게임기, 저작권(리깅x)+기본표정파츠 전체]",
+          "en": "Full package (design + full body + nude parts + game device + copyright, no rigging)",
+          "p": 1950000,
+          "cat": "fullopt"
+        }
+      ]
+    },
+    {
+      "id": "rig",
+      "ko": "리깅 협업 세트",
+      "en": "Rigging Collab Set",
+      "koLabel": "리깅 협업 세트",
+      "type": "radio",
+      "noteKo": "리깅은 협업 작가님께 별도 신청이 필요해요.",
+      "noteEn": "Rigging must be requested separately from the collab rigger.",
+      "items": [
+        {
+          "id": "r1",
+          "ko": "리깅 + 전신 세트 (5만원 할인)",
+          "en": "Hayena rigging + full body set",
+          "p": 800000,
+          "subKo": "🎉 5만원 할인",
+          "subEn": "🎉 ₩50,000 off"
+        },
+        {
+          "id": "r2",
+          "ko": "리깅 + 전신 세트 (표정 리깅 무료+5만원 할인)",
+          "en": "Momon rigging + full body set",
+          "p": 900000,
+          "subKo": "🎉 표정리깅 전부 무료",
+          "subEn": "🎉 all expression rigging free"
+        },
+        {
+          "id": "r3",
+          "ko": "리깅 + 전신 세트 (5만원 할인)",
+          "en": "Pini rigging + full body set",
+          "p": 1300000,
+          "subKo": "🎉 5만원 할인",
+          "subEn": "🎉 ₩50,000 off"
+        }
+      ]
+    },
+    {
+      "id": "expr",
+      "ko": "기본 제공 표정(5개 무료)",
+      "en": "Free Expressions(5 Free)",
+      "koLabel": "기본 제공 표정(5개 무료)",
+      "tagKo": "무료",
+      "tagEn": "Free",
+      "tagCls": "free",
+      "type": "expr",
+      "items": [
+        {
+          "id": "x1",
+          "ko": "빠직",
+          "en": "Anger mark"
+        },
+        {
+          "id": "x2",
+          "ko": "정색 (얼굴 어두워짐)",
+          "en": "Deadpan"
+        },
+        {
+          "id": "x3",
+          "ko": "반짝이는 눈",
+          "en": "Sparkly eyes"
+        },
+        {
+          "id": "x4",
+          "ko": "하트눈",
+          "en": "Heart eyes"
+        },
+        {
+          "id": "x5",
+          "ko": "눈물",
+          "en": "Tears"
+        },
+        {
+          "id": "x6",
+          "ko": "땀",
+          "en": "Sweat"
+        },
+        {
+          "id": "x7",
+          "ko": "죽은눈",
+          "en": "Dead eyes"
+        },
+        {
+          "id": "x8",
+          "ko": "동공 작아짐",
+          "en": "Shrunk pupils"
+        },
+        {
+          "id": "x9",
+          "ko": "볼빵빵",
+          "en": "Puffed cheeks"
+        }
+      ]
+    },
+    {
+      "id": "add",
+      "ko": "추가 옵션",
+      "en": "Add-ons",
+      "koLabel": "추가 옵션",
+      "type": "pill",
+      "hintKo": "의상·헤어는 먼저 문의 후 선택해 주세요",
+      "hintEn": "Please inquire before choosing outfit/hair add-ons",
+      "items": [
+        {
+          "id": "a2",
+          "ko": "표정·얼굴 파츠 추가",
+          "en": "Expression / face parts",
+          "p": 10000
+        },
+        {
+          "id": "a3",
+          "ko": "의상 추가 (전신)",
+          "en": "Extra outfit (full body)",
+          "p": 200000
+        },
+        {
+          "id": "a4",
+          "ko": "악세서리·소품 파츠",
+          "en": "Accessory / prop parts",
+          "p": 10000
+        },
+        {
+          "id": "a5",
+          "ko": "게임기 파츠 및 맞춤 손·팔",
+          "en": "Game device + custom hands/arms",
+          "p": 150000
+        },
+        {
+          "id": "a6",
+          "ko": "헤어 추가",
+          "en": "Extra hairstyle",
+          "p": 200000
+        },
+        {
+          "id": "a8",
+          "ko": "동물귀",
+          "en": "Animal ears",
+          "p": 20000
+        },
+        {
+          "id": "a9",
+          "ko": "꼬리",
+          "en": "Tail",
+          "p": 10000
+        },
+        {
+          "id": "a10",
+          "ko": "3면도 (단색채색)",
+          "en": "3-view sheet (flat color)",
+          "p": 200000
+        },
+        {
+          "id": "add_mqa7prr6",
+          "ko": "r18 파츠 추가",
+          "en": "r18 parts",
+          "p": 100000
+        },
+        {
+          "id": "add_mqbswruz",
+          "ko": "겉옷 on/off",
+          "en": "Outerwear on/off",
+          "p": 50000
+        }
+      ]
+    },
+    {
+      "id": "debut",
+      "ko": "데뷔축전",
+      "en": "Debut Celebration",
+      "koLabel": "데뷔축전",
+      "type": "pill",
+      "items": [
+        {
+          "id": "d1",
+          "ko": "데뷔축전 전신",
+          "en": "Debut art (full body)",
+          "p": 300000
+        },
+        {
+          "id": "d2",
+          "ko": "데뷔축전 ( 상업용·장패드등의 굿즈)",
+          "en": "Debut art ( commercial · ex)mousepad )",
+          "p": 550000
+        },
+        {
+          "id": "debut_mqa7n7il",
+          "ko": "메모리얼용 파츠분리 추가",
+          "en": "Adding Parts Separation for Memorials",
+          "p": 250000
+        }
+      ]
+    },
+    {
+      "id": "etc",
+      "ko": "기타",
+      "en": "Others",
+      "koLabel": "기타",
+      "type": "pill",
+      "items": [
+        {
+          "id": "e1",
+          "ko": "저작권 구매 (굿즈·모델양도·상업 사용)",
+          "en": "Copyright (goods · transfer · commercial)",
+          "p": 400000
+        },
+        {
+          "id": "e2",
+          "ko": "빠른 마감 7일",
+          "en": "Rush delivery (7 days)",
+          "p": 300000
+        },
+        {
+          "id": "e3",
+          "ko": "작품 비공개",
+          "en": "Private work",
+          "p": 100000
+        }
+      ]
+    }
+  ],
+  "notice": [
+    {
+      "ico": "📅",
+      "qKo": "작업 기한",
+      "qEn": "Turnaround Time",
+      "aKo": "최소 7- 최대 30일 입니다.\n작업물의 난이도에 따라 달라질 수 있습니다.",
+      "aEn": "Minimum 7 – maximum 30 days.\nThis may vary depending on the complexity of the piece."
+    },
+    {
+      "ico": "©",
+      "qKo": "사용범위 및 저작권",
+      "qEn": "Usage Scope & Copyright",
+      "aKo": "작품의 저작권은 저(ODE)에게 있습니다.\n\n>저작권 미구매 \n- 스트리밍 송출 가능\n- 유튜브 업로드가능\n- 굿즈 제작 불가\n- 수정 불가\n- 3D 제작 불가\n\n>저작권 구매\n- 유튜브 업로드 가능\n- 굿즈 제작 가능\n- 과도하지 않은 선에서 수정 가능\n- 타 작가에게 추가 파츠나 수정등 요청 가능\n- 3D 제작 가능\n\n더 궁금하거나 자세한 사항은 문의 부탁드려요.",
+      "aEn": "Copyright of the artwork belongs to the artist (ODE).\n\n> Without copyright purchase\n- Streaming use allowed\n- YouTube upload allowed\n- Merchandise production not allowed\n- Modifications not allowed\n- 3D production not allowed\n\n> With copyright purchase\n- YouTube upload allowed\n- Merchandise production allowed\n- Reasonable modifications allowed\n- May request additional parts or edits from other artists\n- 3D production allowed\n\nFeel free to reach out with any further questions."
+    },
+    {
+      "ico": "📢",
+      "qKo": "공개",
+      "qEn": "Disclosure / Portfolio",
+      "aKo": "작업물은 작가의 포트폴리오로 사용될 수 있습니다.\n비공개를 원하실경우 '비공개 추가금'을 이용해주세요.",
+      "aEn": "Completed work may be used as part of the artist's portfolio.\nIf you'd like to keep your work private, please add the \"Private\" option above."
+    },
+    {
+      "ico": "💰",
+      "qKo": "환불",
+      "qEn": "Refunds",
+      "aKo": "작업 시작전 -90%\n러프 이후 -70%\n채색 이후 -환불 불가능",
+      "aEn": "Before work begins: 90% refund\nAfter rough draft: 70% refund\nAfter coloring: no refund available"
+    }
+  ],
+  "apply": [
+    {
+      "ko": "방송 및 유튜브 주소/ 닉네임 (없으시다면 기입x)",
+      "en": "Streaming/YouTube channel address & nickname (leave blank if none)",
+      "type": "textarea"
+    },
+    {
+      "ko": "캐릭터의 구체적인 프로파일 (나이.키.성격등 자세한 설정)",
+      "en": "Detailed character profile (age, height, personality, and other specific settings)",
+      "type": "textarea"
+    },
+    {
+      "ko": "디자인 유무 (디자인 추가금 항목에서 골라주세요)",
+      "en": "Do you have a design already? (Please select from the Design pricing options above)",
+      "type": "textarea"
+    },
+    {
+      "ko": "원하시는 일정 (마감일)",
+      "en": "Preferred schedule (deadline)",
+      "type": "textarea"
+    },
+    {
+      "ko": "자유로운 요청사항",
+      "en": "Any additional requests",
+      "type": "textarea"
+    },
+    {
+      "ko": "공개여부",
+      "en": "Public or private",
+      "type": "textarea"
+    }
+  ],
+  "portfolioOrder": []
+}
