@@ -1,4 +1,20 @@
 {
-  "updated": "2026-06-30T10:42:21.812Z",
-  "commissions": []
+  "updated": "2026-07-31T09:12:21.311Z",
+  "commissions": [
+    {
+      "client": "박다영",
+      "type": "완품 모델 추가리깅",
+      "amount": "1045000",
+      "deadline": "2026-08-31",
+      "startDate": "2026-07-31",
+      "email": "wer_sou@naver.com",
+      "note": "",
+      "memo": "",
+      "tag": "",
+      "platform": "artmug",
+      "contact": "X: 항아 @Hangah_cos",
+      "stage": 1,
+      "_idx": 0
+    }
+  ]
 }
