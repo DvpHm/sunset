@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-05T13:27:56.124Z",
+  "updated": "2026-08-16T11:45:49.535Z",
   "commissions": [
     {
       "client": "항아",
@@ -15,6 +15,21 @@
       "contact": "X: @Hangah_cos",
       "stage": 5,
       "_idx": 0
+    },
+    {
+      "client": "서라별",
+      "type": "LD 반신 리깅",
+      "amount": "600000",
+      "deadline": "2026-08-31",
+      "startDate": "2026-08-17",
+      "email": "fantastic110@naver.com",
+      "note": "",
+      "memo": "",
+      "tag": "",
+      "platform": "artmug",
+      "contact": "fantastic110@naver.com",
+      "stage": 1,
+      "_idx": 1
     }
   ]
 }
