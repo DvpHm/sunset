@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T07:04:21.205Z",
+  "updated": "2026-09-07T07:04:41.157Z",
   "commissions": [
     {
       "client": "항아",
@@ -19,7 +19,7 @@
     {
       "client": "서라별",
       "type": "LD 반신 리깅",
-      "amount": "576640",
+      "amount": "611640",
       "deadline": "2026-09-03",
       "startDate": "2026-08-17",
       "email": "fantastic110@naver.com",
@@ -29,8 +29,8 @@
       "platform": "artmug",
       "contact": "fantastic110@naver.com",
       "stage": 7,
-      "_idx": 1,
-      "paidAt": "2026-09"
+      "paidAt": "2026-09",
+      "_idx": 1
     }
   ]
 }
