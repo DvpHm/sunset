@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-03T13:11:52.010Z",
+  "updated": "2026-09-07T07:04:21.205Z",
   "commissions": [
     {
       "client": "항아",
@@ -29,7 +29,8 @@
       "platform": "artmug",
       "contact": "fantastic110@naver.com",
       "stage": 7,
-      "_idx": 1
+      "_idx": 1,
+      "paidAt": "2026-09"
     }
   ]
 }
