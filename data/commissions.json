@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T07:04:41.157Z",
+  "updated": "2026-10-25T08:57:57.802Z",
   "commissions": [
     {
       "client": "항아",
@@ -20,7 +20,7 @@
       "client": "서라별",
       "type": "LD 반신 리깅",
       "amount": "611640",
-      "deadline": "2026-09-03",
+      "deadline": "2026-08-31",
       "startDate": "2026-08-17",
       "email": "fantastic110@naver.com",
       "note": "",
@@ -31,6 +31,21 @@
       "stage": 7,
       "paidAt": "2026-09",
       "_idx": 1
+    },
+    {
+      "client": "히라",
+      "type": "LD 전신 리깅",
+      "amount": "",
+      "deadline": "2026-12-05",
+      "startDate": "2026-11-05",
+      "email": "",
+      "note": "",
+      "memo": "",
+      "tag": "",
+      "platform": "artmug",
+      "contact": "",
+      "stage": 0,
+      "_idx": 2
     }
   ]
 }
