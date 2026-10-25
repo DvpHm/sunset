@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T09:01:10.504Z",
+  "updated": "2026-10-25T09:01:14.232Z",
   "commissions": [
     {
       "client": "항아",
@@ -57,7 +57,7 @@
       "note": "",
       "memo": "",
       "tag": "",
-      "platform": "",
+      "platform": "artmug",
       "contact": "디스코드: mim0ng",
       "stage": 0,
       "_idx": 3
