@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T08:59:37.190Z",
+  "updated": "2026-10-25T09:00:33.061Z",
   "commissions": [
     {
       "client": "항아",
@@ -46,6 +46,21 @@
       "contact": "",
       "stage": 0,
       "_idx": 2
+    },
+    {
+      "client": "백로",
+      "type": "LD 전신 리깅",
+      "amount": "860000",
+      "deadline": "2027-01-01",
+      "startDate": "2026-12-01",
+      "email": "",
+      "note": "",
+      "memo": "",
+      "tag": "",
+      "platform": "",
+      "contact": "디스코드: mim0ng",
+      "stage": 0,
+      "_idx": 3
     }
   ]
 }
