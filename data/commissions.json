@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T09:01:41.947Z",
+  "updated": "2026-10-29T18:22:36.474Z",
   "commissions": [
     {
       "client": "항아",
@@ -61,21 +61,6 @@
       "contact": "디스코드: mim0ng",
       "stage": 0,
       "_idx": 3
-    },
-    {
-      "client": "백로",
-      "type": "",
-      "amount": "910000",
-      "deadline": "2027-02-20",
-      "startDate": "2027-01-20",
-      "email": "",
-      "note": "",
-      "memo": "",
-      "tag": "",
-      "platform": "artmug",
-      "contact": "디스코드: mim0ng",
-      "stage": 0,
-      "_idx": 4
     }
   ]
 }
